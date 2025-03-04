@@ -1,8 +1,8 @@
 from config import db
 from flask import Flask
 from flask_migrate import Migrate
-
-import app.models
+from flask_smorest import Api
+from routes import *
 
 migrate = Migrate()
 
@@ -16,7 +16,13 @@ def create_app():
     db.init_app(application)
 
     migrate.init_app(application, db)
-
-    # 이어서 블루 프린트 등록 코드를 작성해주세요!
+    
+    api=Api(application)
+    api.register_blueprint(index_blp)
+    api.register_blueprint(answer_blp)
+    api.register_blueprint(user_blp)
+    api.register_blueprint(image_blp)
+    api.register_blueprint(question_blp)
+    api.register_blueprint(choice_blp)
 
     return application

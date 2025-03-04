@@ -1,4 +1,3 @@
-from flask_smorest import Api
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -12,3 +11,9 @@ class Config:
     SQLALCHEMY_MAX_OVERFLOW = 5 # 커넥션 풀이 가득 찼을 때, 추가로 허용할 수 있는 연결 개수
     SQLALCHEMY_ECHO = False # SQL 실행 로그 미출력
     reload = True # 서버를 자동으로 리로드
+    API_TITLE = "OZ_FORM API"
+    API_VERSION = "v1"
+    OPENAPI_VERSION = "3.1.3"
+    OPENAPI_URL_PREFIX = "/"
+    OPENAPI_SWAGGER_UI_PATH = "/swagger-ui"
+    OPENAPI_SWAGGER_UI_URL = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
