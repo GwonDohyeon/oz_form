@@ -74,10 +74,10 @@ class Image(CommonModel):
     def __init__(self, url, image_type):
         allowed_type = {"main", "sub"}
         if image_type not in allowed_type:
-            abort(400, f"Invalid type: {type}. Allowed values: {allowed_type}")
+            abort(400, f"Invalid type: {image_type}. Allowed values: {allowed_type}")
 
         self.url = url
-        self.type = type
+        self.type = image_type
 
     questions = db.relationship("Question", back_populates="image")
 
@@ -96,9 +96,7 @@ class Question(CommonModel):
     title = db.Column(db.String(100), nullable=False)
     is_active = db.Column(db.Boolean, nullable=False, default=True)
     sqe = db.Column(db.Integer, nullable=False)
-
     image_id = db.Column(db.Integer, db.ForeignKey("images.id"), nullable=False)
-
     image = db.relationship("Image", back_populates="questions")
 
     def to_dict(self):
@@ -118,7 +116,6 @@ class Choices(CommonModel):
     content = db.Column(db.Text, nullable=False)
     is_active = db.Column(db.Boolean, nullable=False, default=True)
     sqe = db.Column(db.Integer, nullable=False)
-
     question_id = db.Column(db.Integer, db.ForeignKey("questions.id"))
 
     def to_dict(self):
