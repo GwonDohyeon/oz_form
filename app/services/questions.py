@@ -11,6 +11,9 @@ def create_question(title,sqe,image_id,is_active=True):
     except Exception as e:
         db.session.rollback()
         abort(400,str(e))
-def get_questions_list():
+def get_question_list():
     questions=Question.query.all()
     return [question.to_dict() for question in questions]
+def get_question_by_id(id):
+    question=Question.query.get_or_404(id)
+    return question.to_dict()

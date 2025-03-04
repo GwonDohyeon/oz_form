@@ -11,7 +11,7 @@ def create_user(name, age, gender, email):
     except Exception as e:
         db.session.rollback()
         abort(400,str(e))
-def get_users_list():
+def get_user_list():
     users=User.query.all()
     return [user.to_dict() for user in users]
     
