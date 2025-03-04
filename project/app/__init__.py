@@ -2,7 +2,7 @@ from config import db
 from flask import Flask
 from flask_migrate import Migrate
 
-from models import *
+import app.models
 
 migrate = Migrate()
 
