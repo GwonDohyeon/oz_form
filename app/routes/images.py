@@ -1,4 +1,4 @@
-from services import get_image_list,create_image,get_image_by_type
+from app.services import get_image_list,create_image,get_image_by_type
 from flask_smorest import Blueprint
 from flask import jsonify,request,abort
 
@@ -8,7 +8,7 @@ def get_main_image():
     image=get_image_by_type("main")
     if not image or len(image)==0:
         abort(404, "No images found")
-    return jsonify({"url": image[0]['url']}), 200
+    return jsonify({"image": image[0]['url']}), 200
 @image_blp.route('',methods=['POST'])
 def post_new_image():
     try:

@@ -4,7 +4,7 @@ from flask import abort
 
 def create_choice(content,sqe,question_id,is_active=True):
     try:
-        new_choice=Choices(content=content,sqe=sqe, question_id_id=question_id,is_active=is_active)
+        new_choice=Choices(content=content,sqe=sqe, question_id=question_id,is_active=is_active)
         db.session.add(new_choice)
         db.session.commit()
         return new_choice.to_dict()
@@ -18,4 +18,12 @@ def get_choices_by_question_id(question_id):
     choices=Choices.query.filter_by(question_id=question_id).all()
     if not choices:
         abort(404,message='No choices found.')
-    return [choice.to_dict() for choice in choices]
+    choice_list = [
+        {
+            "id": choice.id,
+            "content": choice.content,
+            "is_active": choice.is_active
+        }
+        for choice in choices
+    ]
+    return choice_list

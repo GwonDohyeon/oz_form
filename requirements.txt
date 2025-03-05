@@ -7,3 +7,4 @@ flask-smorest==0.45.0
 gunicorn==23.0.0
 black
 isort
+tzdata
