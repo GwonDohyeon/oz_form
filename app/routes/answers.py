@@ -2,9 +2,9 @@ from app.services import get_answer_list,create_answer
 from flask_smorest import Blueprint
 from flask import jsonify,request,abort
 
-answer_blp=Blueprint('answers',__name__,url_prefix='/submit')
+answer_blp=Blueprint('answers',__name__)
 
-@answer_blp.route('',methods=['POST'])
+@answer_blp.route('/submit',methods=['POST'])
 def submit_answer():
     try:
         answers=request.get_json()
@@ -17,3 +17,9 @@ def submit_answer():
         return jsonify({"message": f"User: {user_id}'s answers Success Create"}),201
     except Exception as e:
         abort(500,str(e))
+        
+
+@answer_blp.route('/result',methods=['GET'])
+def get_results():
+    results=get_answer_list()
+    return jsonify(results),201
