@@ -4,3 +4,4 @@ from .choices import choice_blp
 from .questions import question_blp
 from .images import image_blp
 from .users import user_blp
+from .stats_routes import stats_blp

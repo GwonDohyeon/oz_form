@@ -2,7 +2,7 @@ from config import db
 from flask import Flask
 from flask_migrate import Migrate
 from flask_smorest import Api
-from .routes import index_blp,answer_blp,choice_blp,question_blp,image_blp,user_blp
+from .routes import index_blp,answer_blp,choice_blp,question_blp,image_blp,user_blp,stats_blp
 
 migrate = Migrate()
 
@@ -24,5 +24,6 @@ def create_app():
     api.register_blueprint(image_blp)
     api.register_blueprint(question_blp)
     api.register_blueprint(choice_blp)
+    api.register_blueprint(stats_blp)
 
     return app
