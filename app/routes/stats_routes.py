@@ -1,9 +1,10 @@
-from flask import jsonify, Blueprint
+from flask import jsonify
+from flask_smorest import Blueprint
 from sqlalchemy import func
 from config import db
 from app.models import Answer, Choices, Question
 
-stats_blp = Blueprint('stats_routes', __name__)
+stats_blp = Blueprint('stats_blp', __name__)
 
 # 1. 사용 중인 유저의 각 질문당 선택지 선택 비율
 @stats_blp.route('/stats/answer_rate_by_choice', methods=['GET'])
